@@ -9,4 +9,3 @@ L = 500 #length of the plot in microns
 N = 1000 #number of points in the plot
 
 
-
