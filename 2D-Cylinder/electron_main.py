@@ -29,9 +29,8 @@ f0=((px)**2) / (gamma * me * k)
 
 input_module = importlib.import_module(sys.argv[1])
 
-
-y0 = input_module.y0*rb
-dy = input_module.dy*rb
+y0 = input_module.y0_rb*rb
+dy = input_module.dy_rb*rb
 ################################################################
 #Create/define Focal Length Function
 def f_cyl(i):
@@ -63,28 +62,28 @@ Intersect_y3 = -(y0/(f_cyl(y0)))*f_Tilda3 +y0
 dist1_cm = np.sqrt((f_Tilda2 - f_Tilda)**2 + (Intersect_y2 - Intersect_y)**2) *100
 dist2_cm = np.sqrt((f_Tilda3 - f_Tilda)**2 + (Intersect_y3 - Intersect_y)**2) *100
 ###########################################################################
-#Slopes and focal lengths
-print(f"The slope of the high electron is = {(y0+dy)/(f_cyl(y0+dy)):.4e}")
-print(f"The focal length of the high electron is ={f_cyl(y0+dy):.4e}")
-print()
-print(f"The slope of the low electron is ={(y0)/f_cyl(y0):.4e}")
-print(f"The focal length of the low electron is ={f_cyl(y0):.4e}")
+#Slopes and focal lengths (Dont Need most of these. Just for checking)
+#print(f"The slope of the high electron is = {(y0+dy)/(f_cyl(y0+dy)):.4e}")
+#print(f"The focal length of the high electron is ={f_cyl(y0+dy):.4e}")
+#print()
+#print(f"The slope of the low electron is ={(y0)/f_cyl(y0):.4e}")
+#print(f"The focal length of the low electron is ={f_cyl(y0):.4e}")
 
-print()
-print(f"Point of Intersection(f_tilda): {f_Tilda:.4e} meters")
-print(f"Height of Intersection:{Intersect_y:.4e} meters")
-print()
+#print()
+#print(f"Point of Intersection(f_tilda): {f_Tilda:.4e} meters")
+#print(f"Height of Intersection:{Intersect_y:.4e} meters")
+#print()
 print(f"Distance between f_tilda and f_tilda at small dy= {dist1_cm:.4e} cm")
 print(f"Distance between f_tilda and f_tilda near midline= {dist2_cm:.4e} cm")
 print()
-print(f"y0 = {y0:.4e} meters")
-print(f"dy = {dy:.4e} meters")
+print(f"y0 = {y0/rb:.4f} c/wp")
+print(f"dy = {dy/rb:.4f} c/wp")
 print()
 if dist1_cm < dist2_cm:
-    print("The firt approximation is better")
+    print("The first approximation is better")
 else:
     print("The second approximation is better")
-print(y0/rb)
+#print(y0/rb)
 ################################################################
 #Normalization:             
 x = x/(c/wp)
